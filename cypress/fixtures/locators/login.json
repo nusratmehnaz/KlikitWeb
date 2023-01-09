@@ -1,0 +1,5 @@
+{
+    "emailFLD": "#username",
+    "passwordFLD": "input[name='password']",
+    "loginBTN": ".w-full"
+}

@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "admin": "https://admin.dev.shadowchef.co/",
+        "cloud": "https://app.dev.shadowchef.co/"
+    },
+    "qa": {
+        "admin": "https://admin-qa.shadowchef.co/",
+        "cloud": "https://app-qa.shadowchef.co/"
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "userinfoBTN":"div.header-title div[role='presentation']:nth-child(2)",
+    "logoutBTN":"[title='Logout']"
+}
