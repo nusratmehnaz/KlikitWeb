@@ -7,5 +7,7 @@
     "longitudeFLD": "[name='lon']",
     "opentimeDPDW": "div.sc-timepicker-label.border-none",
     "selectTime": "div.hour-half [class=' sc-timepicker-dropdown-row']:nth-child(7)",
-    "printerTypeDPDW": "div.sc-selector"
+    "printerTypeDPDW": "div.sc-selector",
+    "equipmentEditIcon": "[title='Add/Edit Kitchen Equipment']",
+    "equipmentCHKBX":".sc-checkbox input"
 }

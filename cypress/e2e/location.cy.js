@@ -10,10 +10,12 @@ describe('User can successfully create a location', () => {
             this.new_location = new_location
         })
     })
+
     it('Go to the Location section and click on new button', function () {
         cy.get(this.location.locationBTN).click({ force: true })
         cy.contains("New").click()
     });
+
     it('Enter all required informations', function () {
         cy.get(this.location.branchNameFLD).type(this.new_location.branchName)
         cy.get(this.location.phoneFLD).type(this.new_location.phoneNumber)
@@ -23,5 +25,15 @@ describe('User can successfully create a location', () => {
         cy.get(this.location.opentimeDPDW).click({ multiple: true })
         cy.get(this.location.selectTime).click()
         cy.contains("Select All").click()
+    });
+
+    it('Select Kitchen Equipments', function () {
+        cy.get(this.location.equipmentEditIcon).click();
+        cy.get(this.location.equipmentCHKBX).check({ force: true });
+        cy.contains('Done').click();
+    });
+
+    it('Click on Save button', function () {
+        cy.contains('Save');
     });
 })
