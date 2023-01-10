@@ -6,6 +6,8 @@
     "QRLabelFLD": "[name='label']",
     "QRurlFLD": ".sc-textarea",
     "cuisineEditIcon": "[title='Add/Edit Cuisine Information']",
-    "cuisineCHKBX":".sc-checkbox input",
-    "toastMSG": ".Toastify"
+    "cuisineCHKBX": ".sc-checkbox input",
+    "toastMSG": ".Toastify",
+    "searchBX": "[name='search']",
+    "selectBrand": ".brand-list-container a:nth-child(1)"
 }
