@@ -10,8 +10,17 @@ describe("User can successfully create another user account", () => {
             this.new_user = new_user
         })
     })
-    it('Go to the User section and click on new button', function() {
-        cy.get(this.user.locationBTN).click({ force: true })
+    it('Go to the User section and click on new button', function () {
+        cy.get(this.user.userBTN).click({ force: true })
         cy.contains("New").click()
+    });
+    xit('Enter all required informations', function () {
+        cy.get(this.user.firstnameFLD).type(this.new_user.first_name);
+        cy.get(this.user.lastnameFLD).type(this.new_user.last_name);
+        cy.get(this.user.emailFLD).type(this.new_user.email);
+        cy.get(this.user.phoneFLD).type(this.new_user.phone);
+    });
+    it('Upload user image', function () {
+        cy.get(this.user.addBTN).selectFile('cypress/fixtures/images/user_image.jpg', { force: true })
     });
 })

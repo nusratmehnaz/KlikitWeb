@@ -1,3 +1,8 @@
 {
-    "userBTN":""
+    "userBTN": "a[title='User']",
+    "firstnameFLD": "[name='first_name']",
+    "lastnameFLD": "[name='last_name']",
+    "emailFLD": "[name='email']",
+    "phoneFLD": "[name='phone']",
+    "addBTN": "#userUpload"
 }
