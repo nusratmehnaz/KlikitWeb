@@ -7,5 +7,5 @@
     "longitudeFLD": "[name='lon']",
     "opentimeDPDW": "div.sc-timepicker-label.border-none",
     "selectTime": "div.hour-half [class=' sc-timepicker-dropdown-row']:nth-child(7)",
-    "printerTypeDPDW": "body > div:nth-child(10) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > form:nth-child(1) > div:nth-child(1) > div:nth-child(10) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)"
+    "printerTypeDPDW": "div.sc-selector"
 }
