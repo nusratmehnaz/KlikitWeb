@@ -1,3 +1,8 @@
 {
-    "profile_btn":""
+    "userinfoBTN": "div.header-title div[role='presentation']:nth-child(2)",
+    "profileBTN": ".user-profile-container a",
+    "firstnameFLD": "[name='first_name']",
+    "lastnameFLD": "[name='last_name']",
+    "phoneFLD": "[name='phone']",
+    "toastMSG": ".Toastify"
 }

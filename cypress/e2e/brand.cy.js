@@ -16,9 +16,12 @@ describe("User can successfully create a brand", () => {
         cy.contains("New").click()
     });
 
-    it('Upload brand banner and logo', function () {
+    it('Upload brand banner & logo and verify the success toast messages', function () {
         cy.get(this.brand.addBannerBTN).selectFile('cypress/fixtures/images/banner.jpg', { force: true })
+        cy.get(this.brand.toastMSG).should('have.text', 'Banner added successfully');
+        cy.wait(5000);
         cy.get(this.brand.addLogoBTN).selectFile('cypress/fixtures/images/logo.png', { force: true })
+        cy.get(this.brand.toastMSG).should('have.text', 'Logo added successfully');
     });
 
     it('Enter all required informations', function () {
@@ -34,6 +37,10 @@ describe("User can successfully create a brand", () => {
     });
 
     it('Click on Save button', function () {
-        cy.contains('Save');
+        cy.contains('Save').click();
+    });
+
+    it('Verify the success toast message', function () {
+        cy.get(this.brand.toastMSG).should('have.text', 'Brand created successfully');
     });
 })
