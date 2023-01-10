@@ -36,11 +36,8 @@ describe("User can successfully create a brand", () => {
         cy.contains('Done').click();
     });
 
-    it('Click on Save button', function () {
+    it('Click on Save button and verify the success toast message', function () {
         cy.contains('Save').click();
-    });
-
-    it('Verify the success toast message', function () {
         cy.get(this.brand.toastMSG).should('have.text', 'Brand created successfully');
     });
 })

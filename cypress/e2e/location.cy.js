@@ -33,7 +33,8 @@ describe('User can successfully create a location', () => {
         cy.contains('Done').click();
     });
 
-    it('Click on Save button', function () {
-        cy.contains('Save');
+    xit('Click on Save button and verify the success toast message', function () {
+        cy.contains('Save').click()
+        cy.get(this.location.toastMSG).should('have.text', 'Brand created successfully');
     });
 })

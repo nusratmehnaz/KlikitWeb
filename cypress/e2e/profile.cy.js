@@ -32,24 +32,26 @@ describe('User can successfully update his/her own information', () => {
     });
 })
 
-// describe('Change the password',()=>{
-//     beforeEach(function () {
-//         cy.fixture('/locators/profile.json').then(function (profile) {
-//           this.profile = profile
-//         })
-//       })
-//       it('blah blah', () => {
-//         console.log("Print hoy")
-//       });
-// })
+describe('User can successfully change the password', () => {
 
-// describe('Verify the email id with the logged in email credential',()=>{
-//     beforeEach(function () {
-//         cy.fixture('/locators/profile.json').then(function (profile) {
-//           this.profile = profile
-//         })
-//       })
-//       it('blah blah', () => {
-//         console.log("Print hoy")
-//       });
-// })
+    beforeEach(function () {
+        cy.fixture('/locators/profile.json').then(function (profile) {
+            this.profile = profile
+        })
+        cy.fixture('/data/credentials').then(function (credentials) {
+            this.credentials = credentials
+        })
+    })
+
+    it('Go to the change password section', function () {
+        cy.contains('Change Password').click()
+        cy.get(this.profile.currectPassFLD).type(this.credentials.current)
+        cy.get(this.profile.newPassFLD).type(this.credentials.new)
+        cy.get(this.profile.confirmPassFLD).type(this.credentials.new)
+    });
+
+    it('Click on Update button and verify the success toast message', function () {
+        cy.contains('Update').click()
+        cy.get(this.profile.toastMSG).should('have.text','Password change successfully')
+    })
+})

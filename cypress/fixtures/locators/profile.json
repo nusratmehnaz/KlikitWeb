@@ -4,5 +4,8 @@
     "firstnameFLD": "[name='first_name']",
     "lastnameFLD": "[name='last_name']",
     "phoneFLD": "[name='phone']",
-    "toastMSG": ".Toastify"
+    "toastMSG": ".Toastify",
+    "currectPassFLD": "[name='old_password']",
+    "newPassFLD": "[name='new_password']",
+    "confirmPassFLD": "[name='confirmPassword']"
 }

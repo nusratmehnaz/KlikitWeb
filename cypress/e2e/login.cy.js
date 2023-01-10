@@ -20,12 +20,13 @@ describe('User login successfully and redirects to the order dashboard', () => {
   it('Visit URL', function () {
     cy.visit(this.url.qa.cloud)
   })
+
   it('Enter email and password', function () {
     cy.get(this.login.emailFLD).type(this.credentials.email)
-    cy.get(this.login.passwordFLD).type(this.credentials.password)
+    cy.get(this.login.passwordFLD).type(this.credentials.current)
   });
 
   it('Click on the login button', function () {
     cy.get(this.login.loginBTN).click()
   });
-})
+}) 

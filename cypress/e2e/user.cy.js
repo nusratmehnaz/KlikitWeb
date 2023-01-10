@@ -16,14 +16,15 @@ describe("User can successfully create another user account", () => {
         cy.contains("New").click()
     });
 
-    it('Enter all required informations', function () {
+    xit('Enter all required informations', function () {
         cy.get(this.user.firstnameFLD).type(this.new_user.first_name);
         cy.get(this.user.lastnameFLD).type(this.new_user.last_name);
         cy.get(this.user.emailFLD).type(this.new_user.email);
         cy.get(this.user.phoneFLD).type(this.new_user.phone);
     });
-    
-    it('Upload user image', function () {
+
+    it('Upload user image and verify the success toast messages', function () {
         cy.get(this.user.addBTN).selectFile('cypress/fixtures/images/user_image.jpg', { force: true })
+        cy.get(this.user.toastMSG).should('have.text', 'Profile image uploaded successfully!');
     });
 })

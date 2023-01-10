@@ -4,5 +4,6 @@
     "lastnameFLD": "[name='last_name']",
     "emailFLD": "[name='email']",
     "phoneFLD": "[name='phone']",
-    "addBTN": "#userUpload"
+    "addBTN": "#userUpload",
+    "toastMSG": ".Toastify"
 }
