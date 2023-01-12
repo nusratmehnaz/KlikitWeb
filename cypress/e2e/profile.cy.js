@@ -1,13 +1,16 @@
 /// <reference types="Cypress"/>
 
+const faker = require('faker')
+const firstName = 'Automation User'
+const edit = 'Edit'
+let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
+let lastname = faker.name.lastName()
+
 describe('User can successfully update his/her own information', () => {
 
     beforeEach(function () {
         cy.fixture('/locators/profile.json').then(function (profile) {
             this.profile = profile
-        })
-        cy.fixture('/data/updated_user_info.json').then(function (updated_data) {
-            this.updated_data = updated_data
         })
     })
 
@@ -18,18 +21,15 @@ describe('User can successfully update his/her own information', () => {
     });
 
     xit('Enter the updated information', function () {
-        cy.get(this.profile.firstnameFLD).clear().type(this.updated_data.first_name)
-        cy.get(this.profile.lastnameFLD).clear().type(this.updated_data.last_name)
-        cy.get(this.profile.phoneFLD).clear().type(this.updated_data.phone)
+        cy.get(this.profile.firstnameFLD).clear().type(firstName)
+        cy.get(this.profile.lastnameFLD).clear().type(lastname + ' ' + edit)
+        cy.get(this.profile.phoneFLD).clear().type(phoneNumber)
     });
 
-    it('Click on Update button', function () {
+    it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click();
-    });
-
-    it('Verify the success toast message', function () {
         cy.get(this.profile.toastMSG).should('have.text', 'User updated successfully');
-    });
+    })
 })
 
 describe('User can successfully change the password', () => {
@@ -52,6 +52,6 @@ describe('User can successfully change the password', () => {
 
     it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click()
-        cy.get(this.profile.toastMSG).should('have.text','Password change successfully')
+        cy.get(this.profile.toastMSG).should('have.text', 'Password change successfully')
     })
 })
