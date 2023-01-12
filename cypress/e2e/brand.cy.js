@@ -1,13 +1,15 @@
 /// <reference types="Cypress"/>
 
+const brandName = 'Automation Brand'
+const label = 'QR Label'
+const url = 'QR URL'
+const edit = 'Edit'
+
 describe("User can successfully create a brand", () => {
 
     beforeEach(function () {
         cy.fixture('/locators/brand.json').then(function (brand) {
             this.brand = brand
-        })
-        cy.fixture('/data/new_brand.json').then(function (new_brand) {
-            this.new_brand = new_brand
         })
     })
 
@@ -25,9 +27,9 @@ describe("User can successfully create a brand", () => {
     });
 
     it('Enter all required informations', function () {
-        cy.get(this.brand.brandNameFLD).type(this.new_brand.brand_name);
-        cy.get(this.brand.QRLabelFLD).type(this.new_brand.QR_label);
-        cy.get(this.brand.QRurlFLD).type(this.new_brand.QR_URL)
+        cy.get(this.brand.brandNameFLD).type(brandName);
+        cy.get(this.brand.QRLabelFLD).type(brandName + ' ' + label);
+        cy.get(this.brand.QRurlFLD).type(brandName + ' ' + url)
     });
 
     it('Select cuisines', function () {
@@ -48,24 +50,18 @@ describe('User can successfully update any brand', () => {
         cy.fixture('/locators/brand.json').then(function (brand) {
             this.brand = brand
         })
-        cy.fixture('/data/new_brand.json').then(function (new_brand) {
-            this.new_brand = new_brand
-        })
-        cy.fixture('/data/update_brand_info.json').then(function (update_brand_info) {
-            this.update_brand_info = update_brand_info
-        })
     })
 
     it('Search and select the brand', function () {
-        cy.get(this.brand.searchBX).type(this.new_brand.brand_name)
+        cy.get(this.brand.searchBX).type(brandName)
         cy.get(this.brand.selectBrand).click()
         cy.wait(2000);
     });
 
     xit('Update the necessary informations', function () {
-        cy.get(this.brand.brandNameFLD).clear().type(this.update_brand_info.brand_name);
-        cy.get(this.brand.QRLabelFLD).clear().type(this.update_brand_info.QR_label);
-        cy.get(this.brand.QRurlFLD).clear().type(this.update_brand_info.QR_URL)
+        cy.get(this.brand.brandNameFLD).clear().type(brandName + ' ' + edit);
+        cy.get(this.brand.QRLabelFLD).clear().type(brandName + ' ' + label + ' ' + edit);
+        cy.get(this.brand.QRurlFLD).clear().type(brandName + ' ' + url + ' ' + edit)
     });
 
     it('Click on Update button and verify the success toast message', function () {

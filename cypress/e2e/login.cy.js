@@ -18,7 +18,7 @@ describe('User login successfully and redirects to the order dashboard', () => {
   })
 
   it('Visit URL', function () {
-    cy.visit(this.url.qa.cloud)
+    cy.visit(this.url.dev.cloud)
   })
 
   it('Enter email and password', function () {

@@ -5,5 +5,9 @@
     "emailFLD": "[name='email']",
     "phoneFLD": "[name='phone']",
     "addBTN": "#userUpload",
-    "toastMSG": ".Toastify"
+    "toastMSG": ".Toastify",
+    "roleDPDW": ".scam-form-user-role-select .sc-selector",
+    "roleSLCT": ".sc-select-dropdown .sc-select-dropdown-item:nth-child(1)",
+    "brandDPDW": ".scam-form-user-brand-select .sc-selector",
+    "brandSLCT": ".sc-select-dropdown-item:nth-child(1)"
 }

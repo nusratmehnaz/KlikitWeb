@@ -5,10 +5,21 @@
     "addressFLD": "[name='address']",
     "latitudeFLD": "[name='lat']",
     "longitudeFLD": "[name='lon']",
-    "opentimeDPDW": "div.sc-timepicker-label.border-none",
-    "selectTime": "div.hour-half [class=' sc-timepicker-dropdown-row']:nth-child(7)",
+    "opentimeDPDW": ".scam-branch-opening-time-picker .sc-timepicker",
+    "selectOpenTime": "div.hour-half [class=' sc-timepicker-dropdown-row']:nth-child(7)",
+    "closetimeDPDW": ".scam-branch-closing-time-picker .sc-timepicker",
+    "selectCloseTime": "div.hour-half [class=' sc-timepicker-dropdown-row']:nth-child(10)",
     "printerTypeDPDW": "div.sc-selector",
     "equipmentEditIcon": "[title='Add/Edit Kitchen Equipment']",
-    "equipmentCHKBX":".sc-checkbox input",
-    "toastMSG": ".Toastify"
+    "equipmentCHKBX": ".sc-checkbox input",
+    "toastMSG": ".Toastify",
+    "printerDPDW": ".scam-location-printer-select .sc-selector",
+    "printerSLCT": ".scam-location-printer-select .sc-select-dropdown-item:nth-child(2)",
+    "cityDPDW": ".scam-location-city-select .sc-selector",
+    "citySLCT": ".scam-location-city-select .sc-select-dropdown-item:nth-child(20)",
+    "brandDPDW": ".scam-location-brands-select .sc-selector",
+    "brandSLCT": ".scam-location-brands-select .sc-select-dropdown-item:nth-child(1)",
+    "searchBX": "[name='search']",
+    "selectLocation": ".url-list-container a:nth-child(3)"
+
 }
