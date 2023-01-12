@@ -2,6 +2,7 @@
 
 const faker = require('faker')
 const firstName = 'Automation User'
+const edit = 'Edit'
 let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
 let lastname = faker.name.lastName()
 let newUserMail = 'automation.user' + `${Math.floor(Math.random() * (999 - 100) + 100)}` + '@mailinator.com'
@@ -11,9 +12,6 @@ describe("User can successfully create another user account", () => {
     beforeEach(function () {
         cy.fixture('/locators/user.json').then(function (user) {
             this.user = user
-        })
-        cy.fixture('/data/credentials.json').then(function (data) {
-            this.data = data
         })
     })
 
@@ -47,3 +45,44 @@ describe("User can successfully create another user account", () => {
         cy.get(this.user.toastMSG).should('have.text', 'User Created successfully');
     });
 })
+
+describe('User can successfully update any user account', () => {
+
+    beforeEach(function () {
+        cy.fixture('/locators/user.json').then(function (user) {
+            this.user = user
+        })
+    })
+
+    it('Search and select the user', function () {
+        cy.get(this.user.searchBX).type(firstName)
+        cy.contains(firstName).first().click()
+    });
+
+    it('Update the necessary informations', function () {
+        cy.get(this.user.firstnameFLD).clear().type(firstName);
+        cy.get(this.user.lastnameFLD).clear().type(lastname + ' ' + edit)
+        cy.get(this.user.phoneFLD).clear().type(phoneNumber)
+    });
+
+    it('Click on Update button and verify the success toast message', function () {
+        cy.contains('Update').click({ force: true });
+        cy.get(this.user.toastMSG).should('have.text', 'User Updated successfully');
+    });
+});
+
+describe('User can successfully delete any user account', () => {
+
+    beforeEach(function () {
+        cy.fixture('/locators/user.json').then(function (user) {
+            this.user = user
+        })
+    })
+
+    it('Click on Delete button and verify the success toast message', function () {
+        cy.contains('Delete').click({ force: true })
+        cy.wait(2000);
+        cy.get(this.user.deleteBTN).click()
+        cy.get(this.user.toastMSG).should('have.text', 'User deleted successfully');
+    });
+});

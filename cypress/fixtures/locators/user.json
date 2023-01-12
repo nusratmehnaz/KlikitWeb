@@ -9,5 +9,7 @@
     "roleDPDW": ".scam-form-user-role-select .sc-selector",
     "roleSLCT": ".sc-select-dropdown .sc-select-dropdown-item:nth-child(1)",
     "brandDPDW": ".scam-form-user-brand-select .sc-selector",
-    "brandSLCT": ".sc-select-dropdown-item:nth-child(1)"
+    "brandSLCT": ".sc-select-dropdown-item:nth-child(1)",
+    "searchBX": "[placeholder='Enter name to search']",
+    "deleteBTN": "div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button:nth-child(2)"
 }
