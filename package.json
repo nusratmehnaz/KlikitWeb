@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/cypress open"
+    "//test": "node_modules/.bin/cypress open",
+    "test": "npx cypress run --browser chrome --record --key c057d169-edd1-448e-a957-d1447168a5a1"
   },
   "author": "Nusrat Mehnaz",
   "license": "ISC",

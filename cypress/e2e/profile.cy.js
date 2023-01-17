@@ -29,6 +29,7 @@ describe('User can successfully update his/her own information', () => {
     it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click();
         cy.get(this.profile.toastMSG).should('have.text', 'User updated successfully');
+        cy.wait(2000);
     })
 })
 
@@ -53,5 +54,6 @@ describe('User can successfully change the password', () => {
     it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click()
         cy.get(this.profile.toastMSG).should('have.text', 'Password change successfully')
+        cy.wait(2000);
     })
 })

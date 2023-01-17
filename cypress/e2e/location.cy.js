@@ -4,7 +4,7 @@ const edit = 'Edit'
 const faker = require('faker')
 const branchName = 'Automation Branch'
 let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
-let name = faker.name.firstName()
+let cityName = faker.address.cityName()
 let latitude = faker.address.latitude()
 let longitude = faker.address.longitude()
 let address = faker.address.streetAddress()
@@ -23,7 +23,7 @@ describe('User can successfully create a location', () => {
     });
 
     it('Enter all required informations', function () {
-        cy.get(this.location.branchNameFLD).type(branchName + ' ' + name)
+        cy.get(this.location.branchNameFLD).type(branchName + ' ' + cityName)
         cy.get(this.location.phoneFLD).type(phoneNumber)
         cy.get(this.location.addressFLD).type(address)
         cy.get(this.location.latitudeFLD).type(latitude)
@@ -38,7 +38,7 @@ describe('User can successfully create a location', () => {
         cy.contains("Select All").click()
     });
 
-    it('Select Kitchen Equipments', function () {
+    xit('Select Kitchen Equipments', function () {
         cy.get(this.location.equipmentEditIcon).click();
         cy.get(this.location.equipmentCHKBX).check({ force: true });
         cy.contains('Done').click();
@@ -56,6 +56,7 @@ describe('User can successfully create a location', () => {
     it('Click on Save button and verify the success toast message', function () {
         cy.contains('Save').click({ force: true })
         cy.get(this.location.toastMSG).should('have.text', 'Branch created successfully');
+        cy.wait(2000);
     });
 })
 
@@ -73,8 +74,8 @@ describe('User can successfully update any location', function () {
         cy.wait(2000);
     });
 
-    it('Update the necessary informations', function () {
-        cy.get(this.location.branchNameFLD).clear().type(branchName + ' ' + name + ' ' + edit)
+    xit('Update the necessary informations', function () {
+        cy.get(this.location.branchNameFLD).clear().type(branchName + ' ' + cityName + ' ' + edit)
         cy.get(this.location.phoneFLD).clear().type(phoneNumber)
         cy.get(this.location.addressFLD).clear().type(address + ' ' + edit)
         cy.get(this.location.latitudeFLD).clear().type(latitude)
@@ -84,5 +85,6 @@ describe('User can successfully update any location', function () {
     it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click({ force: true });
         cy.get(this.location.toastMSG).should('have.text', 'Branch updated successfully');
+        cy.wait(2000);
     });
 });

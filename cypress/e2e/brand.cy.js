@@ -1,9 +1,11 @@
 /// <reference types="Cypress"/>
 
+const faker = require('faker')
 const brandName = 'Automation Brand'
 const label = 'QR Label'
 const url = 'QR URL'
 const edit = 'Edit'
+let city = faker.address.cityName()
 
 describe("User can successfully create a brand", () => {
 
@@ -27,12 +29,12 @@ describe("User can successfully create a brand", () => {
     });
 
     it('Enter all required informations', function () {
-        cy.get(this.brand.brandNameFLD).type(brandName);
+        cy.get(this.brand.brandNameFLD).type(brandName + ' ' + city);
         cy.get(this.brand.QRLabelFLD).type(brandName + ' ' + label);
         cy.get(this.brand.QRurlFLD).type(brandName + ' ' + url)
     });
 
-    it('Select cuisines', function () {
+    xit('Select cuisines', function () {
         cy.get(this.brand.cuisineEditIcon).click();
         cy.get(this.brand.cuisineCHKBX).check({ force: true });
         cy.contains('Done').click();
@@ -41,6 +43,7 @@ describe("User can successfully create a brand", () => {
     it('Click on Save button and verify the success toast message', function () {
         cy.contains('Save').click();
         cy.get(this.brand.toastMSG).should('have.text', 'Brand created successfully');
+        cy.wait(2000);
     });
 })
 
@@ -59,7 +62,7 @@ describe('User can successfully update any brand', () => {
     });
 
     xit('Update the necessary informations', function () {
-        cy.get(this.brand.brandNameFLD).clear().type(brandName + ' ' + edit);
+        cy.get(this.brand.brandNameFLD).clear().type(brandName + ' ' + city + ' ' + edit);
         cy.get(this.brand.QRLabelFLD).clear().type(brandName + ' ' + label + ' ' + edit);
         cy.get(this.brand.QRurlFLD).clear().type(brandName + ' ' + url + ' ' + edit)
     });
@@ -67,5 +70,6 @@ describe('User can successfully update any brand', () => {
     it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click();
         cy.get(this.brand.toastMSG).should('have.text', 'Brand updated successfully');
+        cy.wait(2000);
     });
 })

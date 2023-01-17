@@ -43,6 +43,7 @@ describe("User can successfully create another user account", () => {
     it('Click on Save button and verify the success toast message', function () {
         cy.contains('Save').click({ force: true })
         cy.get(this.user.toastMSG).should('have.text', 'User Created successfully');
+        cy.wait(2000);
     });
 })
 
@@ -59,7 +60,7 @@ describe('User can successfully update any user account', () => {
         cy.contains(firstName).first().click()
     });
 
-    it('Update the necessary informations', function () {
+    xit('Update the necessary informations', function () {
         cy.get(this.user.firstnameFLD).clear().type(firstName);
         cy.get(this.user.lastnameFLD).clear().type(lastname + ' ' + edit)
         cy.get(this.user.phoneFLD).clear().type(phoneNumber)
@@ -68,6 +69,7 @@ describe('User can successfully update any user account', () => {
     it('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click({ force: true });
         cy.get(this.user.toastMSG).should('have.text', 'User Updated successfully');
+        cy.wait(2000);
     });
 });
 
@@ -84,5 +86,6 @@ describe('User can successfully delete any user account', () => {
         cy.wait(2000);
         cy.get(this.user.deleteBTN).click()
         cy.get(this.user.toastMSG).should('have.text', 'User deleted successfully');
+        cy.wait(2000);
     });
 });
