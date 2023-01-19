@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "//test": "node_modules/.bin/cypress open",
-    "test": "npx cypress run --browser chrome --record --key c057d169-edd1-448e-a957-d1447168a5a1"
+    "test": "node_modules/.bin/cypress open",
+    "cloudio": "npx cypress run --browser chrome --record --key c057d169-edd1-448e-a957-d1447168a5a1",
+    "mochawe": "npx cypress run --browser chrome --spec cypress/e2e/all.cy.js"
   },
   "author": "Nusrat Mehnaz",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.3.0"
+    "cypress": "^12.3.0",
+    "cypress-mochawesome-reporter": "^3.2.3"
   },
   "dependencies": {
     "faker": "^5.5.3"

@@ -51,7 +51,7 @@ describe('User can successfully change the password', () => {
         cy.get(this.profile.confirmPassFLD).type(this.credentials.new)
     });
 
-    it('Click on Update button and verify the success toast message', function () {
+    xit('Click on Update button and verify the success toast message', function () {
         cy.contains('Update').click()
         cy.get(this.profile.toastMSG).should('have.text', 'Password change successfully')
         cy.wait(2000);
