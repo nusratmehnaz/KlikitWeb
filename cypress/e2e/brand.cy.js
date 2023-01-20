@@ -57,7 +57,7 @@ describe('User can successfully update any brand', () => {
 
     it('Search and select the brand', function () {
         cy.get(this.brand.searchBX).type(brandName)
-        cy.get(this.brand.selectBrand).click()
+        cy.get(this.brand.selectBrand).eq(1).click()
         cy.wait(2000);
     });
 

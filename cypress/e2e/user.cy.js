@@ -3,6 +3,8 @@
 const faker = require('faker')
 const firstName = 'Automation User'
 const edit = 'Edit'
+const branch = 'Branch'
+const brand = 'Brand'
 let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
 let lastname = faker.name.lastName()
 let newUserMail = 'automation.user' + `${Math.floor(Math.random() * (999 - 100) + 100)}` + '@mailinator.com'
@@ -32,11 +34,15 @@ describe("User can successfully create another user account", () => {
         cy.get(this.user.toastMSG).should('have.text', 'Profile image uploaded successfully!');
     });
 
-    it('Select the role', function () {
+    it('Select the role and brand from the dropdowns', function () {
         cy.get(this.user.roleDPDW).click();
-        cy.get(this.user.roleSLCT).click()
-        cy.get(this.user.brandDPDW).click({ force: true });
-        cy.get(this.user.brandSLCT).click({ force: true })
+        // cy.get(this.user.roleSLCT).contains(brand).click()
+        // cy.get(this.user.brandDPDW).click({ force: true })
+
+        cy.get(this.user.roleSLCT).contains(branch).click()
+        cy.get(this.user.branchDPDW).click({ force: true })
+
+        cy.get(this.user.optionSLCT).eq(1).click({ force: true })
         cy.wait(3000);
     });
 

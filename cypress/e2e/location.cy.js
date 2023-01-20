@@ -32,9 +32,9 @@ describe('User can successfully create a location', () => {
 
     it('Select time and days', function () {
         cy.get(this.location.opentimeDPDW).click()
-        cy.get(this.location.selectOpenTime).click()
+        cy.get(this.location.selectOpenTime).eq(7).click()
         cy.get(this.location.closetimeDPDW).click()
-        cy.get(this.location.selectCloseTime).click()
+        cy.get(this.location.selectCloseTime).eq(15).click()
         cy.contains("Select All").click()
     });
 
@@ -44,13 +44,13 @@ describe('User can successfully create a location', () => {
         cy.contains('Done').click();
     });
 
-    it('Select option from the dropdowns', function () {
+    it('Select printer type, city and brand from the dropdowns', function () {
         cy.get(this.location.printerDPDW).click()
-        cy.get(this.location.printerSLCT).click();
+        cy.get(this.location.printerSLCT).eq(0).click();
         cy.get(this.location.cityDPDW).click()
-        cy.get(this.location.citySLCT).click();
+        cy.get(this.location.citySLCT).eq(34).click();
         cy.get(this.location.brandDPDW).click()
-        cy.get(this.location.brandSLCT).click();
+        cy.get(this.location.brandSLCT).eq(3).click();
     });
 
     it('Click on Save button and verify the success toast message', function () {
@@ -70,7 +70,7 @@ describe('User can successfully update any location', function () {
 
     it('Search and select the location', function () {
         cy.get(this.location.searchBX).type(branchName)
-        cy.get(this.location.selectLocation).click()
+        cy.get(this.location.selectLocation).eq(3).click()
         cy.wait(2000);
     });
 

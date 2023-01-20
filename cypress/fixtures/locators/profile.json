@@ -1,5 +1,5 @@
 {
-    "userinfoBTN": "div.header-title div[role='presentation']:nth-child(2)",
+    "userinfoBTN":".scam-user-info-dd",
     "profileBTN": ".user-profile-container a",
     "firstnameFLD": "[name='first_name']",
     "lastnameFLD": "[name='last_name']",

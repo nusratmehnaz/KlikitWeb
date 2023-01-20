@@ -9,5 +9,5 @@
     "cuisineCHKBX": ".sc-checkbox input",
     "toastMSG": ".Toastify",
     "searchBX": "[name='search']",
-    "selectBrand": ".brand-list-container a:nth-child(1)"
+    "selectBrand": ".brand-list-container a"
 }

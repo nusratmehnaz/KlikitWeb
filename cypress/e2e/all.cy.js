@@ -1,4 +1,5 @@
 import './login.cy'
+import './all_order.cy'
 import './brand.cy'
 import './location.cy'
 import './user.cy'
