@@ -1,6 +1,0 @@
-{
-    "emailFLD": "[name='email']",
-    "passwordFLD": "[name='password']",
-    "loginBTN": ".w-full",
-    "toastMSG": ".Toastify"
-}
