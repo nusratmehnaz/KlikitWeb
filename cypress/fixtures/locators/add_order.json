@@ -1,0 +1,11 @@
+{
+    "addOrderBTN": "a[title='Add Order']",
+    "branchDPDW": ".scam-add-order-branch-select .sc-selector",
+    "branchSLCT": ".sc-select-dropdown-item",
+    "brandDPDW": ".scam-add-order-brand-select .sc-selector",
+    "brandSLCT": ".sc-select-dropdown-item",
+    "menuSLCT":".scam-add-order-menu",
+    "categorySLCT":".scam-add-order-category",
+    "itemSLCT":".scam-add-order-item-add",
+    "modifierSLCT":"div.sc-modal.sc-modal-visible.sc-modal-white div.flex.flex-col.my-2.ml-6 > div:nth-child(3) > label > input"
+}

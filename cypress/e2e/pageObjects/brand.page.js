@@ -12,43 +12,43 @@ class BrandPage {
         selectBrand: ".brand-list-container a"
     }
 
-    clickOnBrandMenu(){
+    clickOnBrandMenu() {
         return cy.get(this.elements.brandBTN).click({ force: true })
     }
 
-    uploadBanner(bannerPath){
+    uploadBanner(bannerPath) {
         return cy.get(this.elements.addBannerBTN).selectFile(bannerPath, { force: true })
     }
 
-    uploadLogo(logoPath){
+    uploadLogo(logoPath) {
         return cy.get(this.elements.addLogoBTN).selectFile(logoPath, { force: true })
     }
 
-    enterBrandName(name){
+    enterBrandName(name) {
         return cy.get(this.elements.brandNameFLD).clear().type(name)
     }
 
-    enterQRLabel(label){
+    enterQRLabel(label) {
         return cy.get(this.elements.QRLabelFLD).clear().type(label)
     }
 
-    enterQrURL(url){
+    enterQrURL(url) {
         return cy.get(this.elements.QRurlFLD).clear().type(url)
     }
 
-    clickOnCuisineEditIcon(){
+    clickOnCuisineEditIcon() {
         return cy.get(this.elements.cuisineEditIcon).click()
     }
 
-    selectCuisine(){
-        return cy.get(this.elements.cuisineCHECKBOX).first().check({ force: true })
+    selectCuisine(no) {
+        return cy.get(this.elements.cuisineCHECKBOX).eq(no).check({ force: true })
     }
 
-    searchBrand(name){
+    searchBrand(name) {
         return cy.get(this.elements.searchBOX).type(name)
     }
 
-    selectBrand(){
+    selectBrand() {
         return cy.get(this.elements.selectBrand).click()
     }
 }

@@ -1,21 +1,19 @@
 /// <reference types="Cypress"/>
 
-import LogoutPage from "../e2e/pageObjects/logout.page"
-import LoginPage from "../e2e/pageObjects/login.page"
+import CommonFunctionPage from "../e2e/pageObjects/commonFunctions.page"
 
-const loginPage = new LoginPage()
-const logoutPage = new LogoutPage()
+const commonFunctions = new CommonFunctionPage()
 
 Cypress.Commands.add('login', (url, email, password) => {
     Cypress.session.clearCurrentSessionData()
     cy.visit(url)
-    loginPage.enterEmail(email)
-    loginPage.enterPassword(password)
-    loginPage.clickOnLoginButton()
+    commonFunctions.enterEmail(email)
+    commonFunctions.enterPassword(password)
+    commonFunctions.clickOnLoginButton()
 })
 
 Cypress.Commands.add('logout', () => {
-    logoutPage.clickOnUserInfoPanel()
-    logoutPage.clickOnLogoutButton()
-    cy.contains("Yes").click()
+    commonFunctions.clickOnUserInfoPanel()
+    commonFunctions.clickOnLogoutButton()
+    commonFunctions.containsF("Yes")
 })

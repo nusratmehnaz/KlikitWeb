@@ -1,7 +1,7 @@
 /// <reference types="Cypress"/>
 
-import BrandPage from './pageObjects/brand.page'
-import CommonFunctionPage from './pageObjects/commonFunctions.page'
+import BrandPage from '../pageObjects/brand.page'
+import CommonFunctionPage from '../pageObjects/commonFunctions.page'
 
 const brandPage = new BrandPage()
 const commonFunctions = new CommonFunctionPage()
@@ -44,7 +44,7 @@ describe("User can successfully create a brand", () => {
     it('Upload brand banner & logo and verify the success messages', () => {
         brandPage.uploadBanner('cypress/fixtures/images/banner.jpg')
         commonFunctions.verifyToastMessage('Banner added successfully')
-        cy.wait(5000)
+        cy.wait(3000)
         brandPage.uploadLogo('cypress/fixtures/images/logo.png')
         commonFunctions.verifyToastMessage('Logo added successfully')
     });
@@ -57,7 +57,7 @@ describe("User can successfully create a brand", () => {
 
     it('Select cuisines', () => {
         brandPage.clickOnCuisineEditIcon()
-        brandPage.selectCuisine()
+        brandPage.selectCuisine(9)
         commonFunctions.containsF('Done')
     });
 
@@ -74,7 +74,7 @@ describe('User can successfully update any brand', () => {
         brandPage.searchBrand(city)
         cy.wait(2000)
         brandPage.selectBrand()
-        cy.wait(2000)
+        cy.wait(1000)
     });
 
     it('Update the necessary information', () => {
@@ -86,14 +86,13 @@ describe('User can successfully update any brand', () => {
     it('Click on Update button and verify the success toast message', () => {
         commonFunctions.containsF('Update')
         commonFunctions.verifyToastMessage('Brand updated successfully')
-        cy.wait(2000);
+        cy.wait(4000)
     });
 })
 
 describe('User successfully logged out from the portal', () => {
 
     it('Open the user info panel and hit logout', function () {
-        cy.wait(2000);
         cy.logout()
     })
 })

@@ -14,7 +14,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
     },
-    specPattern: 'cypress/e2e/**.cy.js',
+    specPattern: 'cypress/e2e/*/**.cy.js',
     testIsolation: false
   }
 })
