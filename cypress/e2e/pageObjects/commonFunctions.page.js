@@ -21,7 +21,7 @@ class CommonFunctionPage {
     }
 
     containsF(text) {
-        cy.contains(text).click()
+        cy.contains(text).click({force: true})
     }
 
     verifyToastMessage(message) {

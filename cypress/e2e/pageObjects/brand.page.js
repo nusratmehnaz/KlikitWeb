@@ -36,12 +36,10 @@ class BrandPage {
         return cy.get(this.elements.QRurlFLD).clear().type(url)
     }
 
-    clickOnCuisineEditIcon() {
-        return cy.get(this.elements.cuisineEditIcon).click()
-    }
-
     selectCuisine(no) {
-        return cy.get(this.elements.cuisineCHECKBOX).eq(no).check({ force: true })
+        return cy.get(this.elements.cuisineEditIcon).click().then(() => {
+            cy.get(this.elements.cuisineCHECKBOX).eq(no).check({ force: true })
+        })
     }
 
     searchBrand(name) {

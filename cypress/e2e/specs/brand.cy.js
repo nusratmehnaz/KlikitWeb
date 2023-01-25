@@ -56,7 +56,6 @@ describe("User can successfully create a brand", () => {
     });
 
     it('Select cuisines', () => {
-        brandPage.clickOnCuisineEditIcon()
         brandPage.selectCuisine(9)
         commonFunctions.containsF('Done')
     });
@@ -83,7 +82,7 @@ describe('User can successfully update any brand', () => {
         brandPage.enterQrURL(editBrand + ' ' + url)
     });
 
-    it('Click on Update button and verify the success toast message', () => {
+    it('Hit Update and verify the success message', () => {
         commonFunctions.containsF('Update')
         commonFunctions.verifyToastMessage('Brand updated successfully')
         cy.wait(4000)
