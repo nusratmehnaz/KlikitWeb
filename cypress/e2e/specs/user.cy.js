@@ -1,97 +1,105 @@
 /// <reference types="Cypress"/>
 
-const faker = require('faker')
-const firstName = 'Automation User'
-const edit = 'Edit'
-const branch = 'Branch'
-const brand = 'Brand'
-let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
-let lastname = faker.name.lastName()
-let newUserMail = 'automation.user' + `${Math.floor(Math.random() * (999 - 100) + 100)}` + '@mailinator.com'
+import UserPage from '../pageObjects/user.page'
+import CommonFunctionPage from '../pageObjects/commonFunctions.page'
 
-describe("User can successfully create another user account", () => {
+const userPage = new UserPage()
+const commonFunctions = new CommonFunctionPage()
+
+const faker = require('faker')
+let lastName = faker.name.lastName()
+
+let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
+let email = 'automation.user' + `${Math.floor(Math.random() * (999 - 100) + 100)}` + '@mailinator.com'
+
+const firstName = 'Automation User'
+const editName = lastName + ' Edit'
+
+describe('User login successfully and redirects to the order dashboard', () => {
 
     beforeEach(function () {
-        cy.fixture('/locators/user.json').then(function (user) {
-            this.user = user
+        cy.fixture('/data/url').then(function (url) {
+            this.url = url
+        })
+
+        cy.fixture('/data/credentials').then(function (cred) {
+            this.cred = cred
         })
     })
 
-    it('Go to the User section and click on new button', function () {
-        cy.get(this.user.userBTN).click({ force: true })
-        cy.contains("New").click()
-    });
+    it('Visit URL and hit login', function () {
+        cy.login(this.url.qa.cloud, this.cred.email, this.cred.current)
+    })
+})
 
-    it('Enter all required informations', function () {
-        cy.get(this.user.firstnameFLD).type(firstName);
-        cy.get(this.user.lastnameFLD).type(lastname);
-        cy.get(this.user.emailFLD).type(newUserMail);
-        cy.get(this.user.phoneFLD).type(phoneNumber)
-    });
+describe("User can successfully create another user account", () => {
 
-    it('Upload user image and verify the success toast messages', function () {
-        cy.get(this.user.addBTN).selectFile('cypress/fixtures/images/user_image.jpg', { force: true })
-        cy.get(this.user.toastMSG).should('have.text', 'Profile image uploaded successfully!');
-    });
+    it('Select the User section and go to the user create form', () => {
+        userPage.clickOnUserMenu()
+        commonFunctions.containsF("New")
+    })
 
-    it('Select the role and brand from the dropdowns', function () {
-        cy.get(this.user.roleDPDW).click();
-        // cy.get(this.user.roleSLCT).contains(brand).click()
-        // cy.get(this.user.brandDPDW).click({ force: true })
+    it('Enter all required information', () => {
+        userPage.enterFirstName(firstName)
+        userPage.enterLastName(lastName)
+        userPage.enterEmail(email)
+        userPage.enterPhoneNumber(phoneNumber)
+    })
 
-        cy.get(this.user.roleSLCT).contains(branch).click()
-        cy.get(this.user.branchDPDW).click({ force: true })
+    it('Upload user image and verify the success toast messages', () => {
+        userPage.uploadImage('cypress/fixtures/images/user_image.jpg')
+        commonFunctions.verifyToastMessage('Profile image uploaded successfully!')
+        cy.wait(2000)
+    })
 
-        cy.get(this.user.optionSLCT).eq(1).click({ force: true })
-        cy.wait(3000);
-    });
+    it('Select the role and brand or branch from the dropdown', () => {
+        // ! Use 0 for Brand Manager and 1 for Branch Manager
+        userPage.selectRoleAndOption(0, 7)
+    })
 
-    it('Click on Save button and verify the success toast message', function () {
-        cy.contains('Save').click({ force: true })
-        cy.get(this.user.toastMSG).should('have.text', 'User Created successfully');
-        cy.wait(2000);
-    });
+    it('Hit Save and verify the success message', () => {
+        commonFunctions.containsF('Save')
+        commonFunctions.verifyToastMessage('User Created successfully')
+        cy.wait(2000)
+    })
 })
 
 describe('User can successfully update any user account', () => {
 
-    beforeEach(function () {
-        cy.fixture('/locators/user.json').then(function (user) {
-            this.user = user
-        })
+    it('Search and select the user', () => {
+        userPage.searchUser(lastName)
+        cy.wait(2000)
+        userPage.selectUser()
+        cy.wait(1000)
     })
 
-    it('Search and select the user', function () {
-        cy.get(this.user.searchBX).type(firstName)
-        cy.contains(firstName).first().click()
-    });
+    it('Update the necessary information', () => {
+        userPage.enterFirstName(firstName)
+        userPage.enterLastName(editName)
+        userPage.enterPhoneNumber(phoneNumber)
+    })
 
-    xit('Update the necessary informations', function () {
-        cy.get(this.user.firstnameFLD).clear().type(firstName);
-        cy.get(this.user.lastnameFLD).clear().type(lastname + ' ' + edit)
-        cy.get(this.user.phoneFLD).clear().type(phoneNumber)
-    });
-
-    it('Click on Update button and verify the success toast message', function () {
-        cy.contains('Update').click({ force: true });
-        cy.get(this.user.toastMSG).should('have.text', 'User Updated successfully');
-        cy.wait(2000);
-    });
-});
+    it('Hit Update and verify the success message', () => {
+        commonFunctions.containsF('Update')
+        commonFunctions.verifyToastMessage('User Updated successfully')
+        cy.wait(2000)
+    })
+})
 
 describe('User can successfully delete any user account', () => {
 
-    beforeEach(function () {
-        cy.fixture('/locators/user.json').then(function (user) {
-            this.user = user
-        })
+    it('Hit Delete and verify the success message', () => {
+        commonFunctions.containsF('Delete')
+        cy.wait(2000)
+        userPage.confirmDelete()
+        commonFunctions.verifyToastMessage('User deleted successfully')
+        cy.wait(2000)
     })
+})
 
-    it('Click on Delete button and verify the success toast message', function () {
-        cy.contains('Delete').click({ force: true })
-        cy.wait(2000);
-        cy.get(this.user.deleteBTN).click()
-        cy.get(this.user.toastMSG).should('have.text', 'User deleted successfully');
-        cy.wait(2000);
-    });
-});
+describe('User successfully logged out from the portal', () => {
+
+    it('Open the user info panel and hit logout', () => {
+        cy.logout()
+    })
+})

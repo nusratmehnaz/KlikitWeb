@@ -1,59 +1,71 @@
 /// <reference types="Cypress"/>
 
-const faker = require('faker')
-const firstName = 'Automation User'
-const edit = 'Edit'
-let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
-let lastname = faker.name.lastName()
+import UserPage from '../pageObjects/user.page'
+import CommonFunctionPage from '../pageObjects/commonFunctions.page'
 
-describe('User can successfully update his/her own information', () => {
+const userPage = new UserPage()
+const commonFunctions = new CommonFunctionPage()
+
+let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
+
+const firstName = 'Main Automation User'
+const editName = 'Changed'
+
+describe('User login successfully and redirects to the order dashboard', () => {
 
     beforeEach(function () {
-        cy.fixture('/locators/profile.json').then(function (profile) {
-            this.profile = profile
+        cy.fixture('/data/url').then(function (url) {
+            this.url = url
+        })
+
+        cy.fixture('/data/credentials').then(function (cred) {
+            this.cred = cred
         })
     })
 
-    it('Open the user info panel and click on profile', function () {
+    it('Visit URL and hit login', function () {
+        cy.login(this.url.qa.cloud, this.cred.email, this.cred.current)
+    })
+})
+
+describe('User can successfully update his/her own profile information', () => {
+
+    it('Open the user info panel and hit profile', () => {
+        commonFunctions.clickOnUserInfoPanel()
+        userPage.clickOnProfile()
+    })
+
+    it('Enter the updated information', () => {
+        userPage.enterFirstName(firstName)
+        userPage.enterLastName(editName)
+        userPage.enterPhoneNumber(phoneNumber)
+    })
+
+    it('Click on Update button and verify the success toast message', () => {
+        commonFunctions.containsF('Update')
+        commonFunctions.verifyToastMessage('User updated successfully')
         cy.wait(2000)
-        cy.get(this.profile.userinfoBTN).click()
-        cy.get(this.profile.profileBTN).click()
-    });
-
-    xit('Enter the updated information', function () {
-        cy.get(this.profile.firstnameFLD).clear().type(firstName)
-        cy.get(this.profile.lastnameFLD).clear().type(lastname + ' ' + edit)
-        cy.get(this.profile.phoneFLD).clear().type(phoneNumber)
-    });
-
-    it('Click on Update button and verify the success toast message', function () {
-        cy.contains('Update').click();
-        cy.get(this.profile.toastMSG).should('have.text', 'User updated successfully');
-        cy.wait(2000);
     })
 })
 
 describe('User can successfully change the password', () => {
 
     beforeEach(function () {
-        cy.fixture('/locators/profile.json').then(function (profile) {
-            this.profile = profile
-        })
-        cy.fixture('/data/credentials').then(function (credentials) {
-            this.credentials = credentials
+        cy.fixture('/data/credentials').then(function (cred) {
+            this.cred = cred
         })
     })
 
-    it('Go to the change password section', function () {
-        cy.contains('Change Password').click()
-        cy.get(this.profile.currectPassFLD).type(this.credentials.current)
-        cy.get(this.profile.newPassFLD).type(this.credentials.new)
-        cy.get(this.profile.confirmPassFLD).type(this.credentials.new)
-    });
+    it('Redirect to the change password page', function () {
+        commonFunctions.containsF('Change Password')
+        userPage.enterCurrentPassword(this.cred.current)
+        userPage.enterNewPassword(this.cred.new)
+        userPage.confirmNewPassword(this.cred.new)
+    })
 
-    xit('Click on Update button and verify the success toast message', function () {
-        cy.contains('Update').click()
-        cy.get(this.profile.toastMSG).should('have.text', 'Password change successfully')
-        cy.wait(2000);
+    it('Hit Update and verify the success message', () => {
+        commonFunctions.containsF('Update')
+        commonFunctions.verifyToastMessage('Password change successfully')
+        cy.wait(2000)
     })
 })

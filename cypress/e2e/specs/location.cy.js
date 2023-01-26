@@ -14,11 +14,8 @@ let address = faker.address.streetAddress()
 
 let phoneNumber = `${Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000)}`
 
-const branchName = 'Automation Branch'
-const edit = 'Edit'
-
-const branch = branchName + ' ' + city
-const editBranch = branch + ' ' + edit
+const branch = 'Automation Branch ' + city
+const editBranch = branch + ' Edit'
 
 describe('User login successfully and redirects to the order dashboard', () => {
 
@@ -96,7 +93,7 @@ describe('User can successfully update any location', () => {
     it('Hit Update and verify the success message', () => {
         commonFunctions.containsF('Update')
         commonFunctions.verifyToastMessage('Branch updated successfully')
-        cy.wait(2000);
+        cy.wait(2000)
     })
 })
 
